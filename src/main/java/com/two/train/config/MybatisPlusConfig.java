@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
  * @author chsm
  */
 @Configuration
-@MapperScan("com.yhzl.two.shop.mapper")
+@MapperScan("com.two.train.mapper")
 public class MybatisPlusConfig {
 
     /**

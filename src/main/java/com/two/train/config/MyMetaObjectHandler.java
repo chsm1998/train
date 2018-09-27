@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  * 对创建时间和修改时间统一操作
- * @program: pokemon
+ * @program: train
  * @author: chsm
  * @create: 2018-09-04 11:08
  **/
