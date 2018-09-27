@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.two.train.mapper.PathMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.two.train.entity.Path">
+        <id column="id" property="id" />
+        <result column="train_id" property="trainId" />
+        <result column="pre_id" property="preId" />
+        <result column="site_id" property="siteId" />
+        <result column="next_id" property="nextId" />
+        <result column="price" property="price" />
+        <result column="store" property="store" />
+        <result column="start_time" property="startTime" />
+        <result column="sleep_time" property="sleepTime" />
+        <result column="gmt_create" property="gmtCreate" />
+        <result column="gmt_modified" property="gmtModified" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, train_id, pre_id, site_id, next_id, price, store, start_time, sleep_time, gmt_create, gmt_modified
+    </sql>
+
+</mapper>
