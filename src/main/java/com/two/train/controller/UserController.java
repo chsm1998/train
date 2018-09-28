@@ -61,5 +61,15 @@ public class UserController {
         return ServerResponse.createWarnMessage("用户未登录");
     }
 
+    @GetMapping("/exitLogin")
+    public ServerResponse<String> exitLogin(HttpSession session) {
+        User user = (User) session.getAttribute(Const.LOGIN_USER);
+        if (user != null) {
+            session.removeAttribute(Const.LOGIN_USER);
+            return ServerResponse.createSuccessMessage("退出登录成功");
+        }
+        return ServerResponse.createIllegalMessage("非法操作");
+    }
+
 }
 
