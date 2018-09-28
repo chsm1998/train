@@ -11,7 +11,7 @@ public enum ResponseCode {
      */
     SUCCESS(200, "SUCCESS"),
     /**
-     * 未完全成功
+     * 警告
      */
     WARN(201, "WARN"),
     /**

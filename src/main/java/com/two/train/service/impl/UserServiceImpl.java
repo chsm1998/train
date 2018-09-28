@@ -24,7 +24,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public ServerResponse<User> register(User user) {
         // 校验用户名是否存在
-        isContainerUsername(user.getUsername());
+        boolean bl = isContainerUsername(user.getUsername());
+        if (bl) {
+            return ServerResponse.createErrorMessage("用户名校验未通过");
+        }
         // 对密码进行MD5加密
         user.setPassword(MD5Util.encrypt(user.getPassword()));
         int count = baseMapper.insert(user);
@@ -50,7 +53,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public ServerResponse<String> checkUsername(String username) {
         if (isContainerUsername(username)) {
-            return ServerResponse.createSuccessMessage("用户名已被使用");
+            return ServerResponse.createWarnMessage("用户名已被使用");
         }
         return ServerResponse.createSuccessMessage("用户名可用");
     }
