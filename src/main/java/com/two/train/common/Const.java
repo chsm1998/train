@@ -8,6 +8,7 @@ package com.two.train.common;
 public class Const {
 
     public static final String LOGIN_USER = "loginUser";
+    public static final String MANAGER_LOGIN = "managerLogin";
     public static final String NOT_LOGIN = "未登录";
 
 }

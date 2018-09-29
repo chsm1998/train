@@ -1,8 +1,12 @@
 package com.two.train.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.two.train.common.ServerResponse;
 import com.two.train.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.two.train.vo.UserVo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -34,5 +38,19 @@ public interface IUserService extends IService<User> {
      * @return  响应信息
      */
     ServerResponse<String> checkUsername(String username);
+
+    /**
+     * 通过用户名查询用户信息
+     * @param username 用户名
+     * @return  用户信息
+     */
+    ServerResponse<List<User>> queryByUsername(String username);
+
+    /**
+     * 分页查询
+     * @param userVo    用户视图对象
+     * @return  用户信息
+     */
+    ServerResponse<IPage> queryPage(UserVo userVo);
 
 }

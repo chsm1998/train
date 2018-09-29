@@ -1,14 +1,17 @@
 package com.two.train.controller;
 
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.two.train.common.Const;
 import com.two.train.common.ServerResponse;
 import com.two.train.entity.User;
 import com.two.train.service.IUserService;
+import com.two.train.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * <p>
@@ -69,6 +72,16 @@ public class UserController {
             return ServerResponse.createSuccessMessage("退出登录成功");
         }
         return ServerResponse.createIllegalMessage("非法操作");
+    }
+
+    @GetMapping("/after/queryByUsername")
+    public ServerResponse<List<User>> queryByUsername(String username) {
+        return userService.queryByUsername(username);
+    }
+
+    @PostMapping("/after/queryPage")
+    public ServerResponse<IPage> queryPage(@RequestBody UserVo userVo) {
+        return userService.queryPage(userVo);
     }
 
 }
