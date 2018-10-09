@@ -14,6 +14,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.two.train.vo.UserVo;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -73,15 +74,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Override
     public ServerResponse<IPage> queryPage(UserVo userVo) {
-        if (userVo == null) {
-            userVo = new UserVo();
-            userVo.setUsername("");
-            userVo.setMyPage(new MyPage().setCurrPage(1).setPageSize(5));
-        }
         IPage<User> userIPage = baseMapper.selectPage(
                 new Page<>(userVo.getMyPage().getCurrPage(), userVo.getMyPage().getPageSize()),
                 new QueryWrapper<User>()
                         .like("username", userVo.getUsername()));
+        // 对身份证号进行脱敏
+        userIPage.getRecords().forEach(v -> v.setIdCard(idCardEncrypt(v.getIdCard())));
         return ServerResponse.createSuccessData("获取用户信息成功", userIPage);
     }
 
@@ -98,5 +96,26 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         return user != null;
     }
 
+    /**
+     * 对身份证进行脱敏处理
+     * @param idCard    身份证号
+     * @return  脱敏处理后的身份证号
+     */
+    private static String idCardEncrypt(String idCard) {
+        // 起始位置
+        int begin = 0;
+        // 结束位置
+        int end = 5;
+        // 脱敏数量
+        int encrypt = 10;
+        // 获取前缀与后缀
+        StringBuilder prefix = new StringBuilder(idCard.substring(begin, end));
+        String suffix = idCard.substring(end + encrypt);
+        // 追加脱敏字符串
+        for (int i = 0; i < encrypt; i++) {
+            prefix.append("*");
+        }
+        return prefix.append(suffix).toString();
+    }
 
 }

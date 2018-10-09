@@ -27,4 +27,4 @@ spring:
     password: team
 logging:
   level:
-    com.yhzl.two.shop: debug
+    com.two.train: debug
