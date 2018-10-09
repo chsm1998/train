@@ -59,7 +59,7 @@ public class GeneratorMybatisPlusConfig {
                                 .setNaming(NamingStrategy.underline_to_camel)
                                 .setTableFillList(tableFillList)
                                 .setEntityBooleanColumnRemoveIsPrefix(true)
-                                .setInclude("manager")
+                                .setInclude("train_type")
                                 .setEntityLombokModel(true)
                                 .setRestControllerStyle(true))
                 .setPackageInfo(
