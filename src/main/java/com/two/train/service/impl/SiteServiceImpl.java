@@ -39,6 +39,15 @@ public class SiteServiceImpl extends ServiceImpl<SiteMapper, Site> implements IS
     }
 
     @Override
+    public ServerResponse<String> addList(List<Site> sites) {
+        boolean b = saveBatch(sites);
+        if (b) {
+            return ServerResponse.createSuccessMessage("批量插入站点成功");
+        }
+        return ServerResponse.createErrorMessage("批量插入站点失败，服务器异常");
+    }
+
+    @Override
     public ServerResponse<String> delete(Integer id) {
         int count = baseMapper.deleteById(id);
         if (count != 1) {

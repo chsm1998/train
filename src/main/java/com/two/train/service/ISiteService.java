@@ -26,6 +26,13 @@ public interface ISiteService extends IService<Site> {
     ServerResponse<String> add(Site site);
 
     /**
+     * 批量添加站点
+     * @param sites 站点集合
+     * @return  是否添加成功
+     */
+    ServerResponse<String> addList(List<Site> sites);
+
+    /**
      * 删除站点
      * @param id 站点id
      * @return  删除后的站点信息

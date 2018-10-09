@@ -35,6 +35,11 @@ public class SiteController {
         return siteService.add(site);
     }
 
+    @PostMapping("/after/addList")
+    public ServerResponse<String> addList(@RequestBody List<Site> sites) {
+        return siteService.addList(sites);
+    }
+
     @DeleteMapping("/after/delete")
     public ServerResponse<String> delete(Integer id) {
         return siteService.delete(id);
